@@ -1,0 +1,21 @@
+.menu {
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  background: linear-gradient(to right,#1b4a97 0,#3e77d5 100%);
+  a {
+    color: #ffffff;
+    outline: 0;
+    opacity: .6;
+    display: block;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    &.active {
+      opacity: 1;
+    }
+  }
+}

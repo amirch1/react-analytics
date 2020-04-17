@@ -1,0 +1,17 @@
+$appBkgColor: #f2f2f2;
+html {
+  background-color: $appBkgColor;
+}
+body {
+  margin: 0;
+  height: auto !important;
+  background-color: $appBkgColor !important;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
