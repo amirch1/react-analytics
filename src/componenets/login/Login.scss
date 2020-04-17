@@ -33,6 +33,10 @@
     .loginBtn{
       width: 160px;
       margin-top: 40px;
+      .btnLabel{
+        margin-left: 8px;
+        margin-right: 8px;
+      }
     }
     .error {
       font-size: 14px;
