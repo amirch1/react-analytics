@@ -28,7 +28,14 @@ function Analytics() {
     const history = useHistory();
     const [config, setConfig] = useState<Config>({ks: '', permissions: [], locale: Locals.English});
     
+    // const ks = sessionStorage.getItem('analyticsKS');
+    // if (ks) {
+    //     setConfig({ks, permissions: [], locale: Locals.English});
+    //     history.push("/engagement");
+    // }
+    
     const loginSuccess = (ks: string, locale: Locals, permissions = []) => {
+        sessionStorage.setItem('analyticsKS', ks);
         setConfig({ks, permissions, locale});
         history.push("/engagement");
     };
