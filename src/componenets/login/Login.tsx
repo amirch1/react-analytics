@@ -54,12 +54,14 @@ export default  function Login(props: Props) {
                             <Option value={Locals.Italian}>Italian</Option>
                         </Select>
                     </div>
-
-                    <span className="error">{loginDetails.error}</span>
+                    
                     <Button disabled={!loginDetails.user.length || !loginDetails.password.length || loginDetails.loggingIn} type="primary" size="large" onClick={login} className="loginBtn">
                         {loginDetails.loggingIn ? (<Spin size="small"/>) : null}
                         <span className="btnLabel">Login</span>
                     </Button>
+                    
+                    <span className="error">{loginDetails.error}</span>
+                    
                 </div>
             </Card>
         </div>

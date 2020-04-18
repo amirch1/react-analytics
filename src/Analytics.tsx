@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Route, useHistory} from 'react-router-dom';
+import {Route, useHistory, Redirect, Switch} from 'react-router-dom';
 import './Analytics.scss';
 import Engagement from "./componenets/engagement/Engagement";
 import Geo from "./componenets/geo/Geo";
 import Menu from "./componenets/menu/Menu";
 import Login from "./componenets/login/Login";
+import PageNotFound from "./componenets/404/404";
 import { Locals } from "./componenets/shared/types/Locals";
 import { ConfigProvider } from 'antd';
 
@@ -28,8 +29,8 @@ function Analytics() {
     const [config, setConfig] = useState<Config>({ks: '', permissions: [], locale: Locals.English});
     
     const loginSuccess = (ks: string, locale: Locals, permissions = []) => {
-        history.push("/engagement");
         setConfig({ks, permissions, locale});
+        history.push("/engagement");
     };
     
     const getLocale = () => {
@@ -55,16 +56,14 @@ function Analytics() {
         <ConfigProvider locale={getLocale()}>
             <ConfigContext.Provider value={config}>
                 <div className="App">
-                    {config.ks.length ?
-                        <>
-                            <Menu/>
-                            <Route exact path="/" component={Login}/>
-                            <Route path="/engagement" component={() => <Engagement config={config} />}/>
-                            <Route path="/geo" component={Geo}/>
-                        </>
-                        :
-                        <Login onLogin={loginSuccess}></Login>
-                    }
+                    {config.ks.length ? <Menu/> : null }
+                    <Switch>
+                        <Route exact path="/" component={() => config.ks.length ? <Engagement config={config}/> : <Redirect to="/login"/>}/>
+                        <Route exact path="/login" component={() => <Login onLogin={loginSuccess}/>}/>
+                        <Route path="/engagement" component={() => <Engagement config={config} />}/>
+                        <Route path="/geo" component={Geo}/>
+                        <Route component={PageNotFound}/>
+                    </Switch>
                 </div>
             </ConfigContext.Provider>
         </ConfigProvider>

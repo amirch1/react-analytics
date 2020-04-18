@@ -41,6 +41,11 @@
     .error {
       font-size: 14px;
       color: red;
+      position: absolute;
+      bottom: 24px;
+      left: 0px;
+      right: 0px;
+      text-align: center;
     }
   }
 }

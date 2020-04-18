@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import DateRange from '../shared/date-range/DateRange';
 import './Engagement.scss';
 import {ConfigContext, Config} from '../../Analytics';
+import { Redirect } from 'react-router-dom';
 
 interface Props{
     config: Config;
@@ -9,15 +10,16 @@ interface Props{
 
 function Engagement(props : Props) {
     
-    const conf: Config = useContext(ConfigContext);
-
+    const config: Config = useContext(ConfigContext);
+    
     return (
         <>
-            <div className="header">
-                <span className="title">Engagement</span>
-                <DateRange/>
-            </div>
-
+            { config.ks.length ?
+                <div className="header">
+                    <span className="title">Engagement</span>
+                    <DateRange/>
+                </div>
+            : <Redirect to="/login"/> }
         </>
     );
 }
