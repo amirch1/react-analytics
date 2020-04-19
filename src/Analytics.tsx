@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {Route, useHistory, Redirect, Switch} from 'react-router-dom';
-import './Analytics.scss';
+import React, {useEffect, useState} from 'react';
+import {Route, useHistory, Redirect, Switch, useLocation} from 'react-router-dom';
 import Engagement from "./componenets/engagement/Engagement";
 import Geo from "./componenets/geo/Geo";
 import Menu from "./componenets/menu/Menu";
@@ -15,6 +14,8 @@ import esES from 'antd/es/locale/es_ES';
 import frFR from 'antd/es/locale/fr_FR';
 import itIT from 'antd/es/locale/it_IT';
 
+import './Analytics.scss';
+
 export interface Config {
     ks: string;
     permissions?: string[];
@@ -25,13 +26,29 @@ export const ConfigContext = React.createContext<Config>({ks: '', locale: Locals
 
 function Analytics() {
     
-    const history = useHistory();
     const [config, setConfig] = useState<Config>({ks: '', permissions: [], locale: Locals.English});
+    const history = useHistory();
+    const  location = useLocation();
+    
+    useEffect(() => {
+        const ks = sessionStorage.getItem('analyticsKS');
+        if (ks) {
+            setConfig({ks, permissions: [], locale: Locals.English});
+            history.push(location.pathname);
+        }
+    }, []);
     
     const loginSuccess = (ks: string, locale: Locals, permissions = []) => {
+        sessionStorage.setItem('analyticsKS', ks);
         setConfig({ks, permissions, locale});
         history.push("/engagement");
     };
+    
+    const logout = () => {
+        sessionStorage.removeItem('analyticsKS');
+        setConfig({ks: '', permissions: [], locale: Locals.English});
+        history.push('/login');
+    }
     
     const getLocale = () => {
         let locale = enUS;
@@ -56,7 +73,7 @@ function Analytics() {
         <ConfigProvider locale={getLocale()}>
             <ConfigContext.Provider value={config}>
                 <div className="App">
-                    {config.ks.length ? <Menu/> : null }
+                    {config.ks.length ? <Menu onLogout={logout}/> : null }
                     <Switch>
                         <Route exact path="/" component={() => config.ks.length ? <Engagement config={config}/> : <Redirect to="/login"/>}/>
                         <Route exact path="/login" component={() => <Login onLogin={loginSuccess}/>}/>
