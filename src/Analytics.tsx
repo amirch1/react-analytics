@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {KalturaEndUserReportInputFilter, KalturaPager} from "kaltura-rxjs-client/api/types";
 import {Route, useHistory, Redirect, Switch, useLocation} from 'react-router-dom';
 import Engagement from "./componenets/engagement/Engagement";
 import Geo from "./componenets/geo/Geo";
@@ -21,14 +22,22 @@ export interface Config {
     permissions?: string[];
     locale: Locals;
 }
+export interface ReportConfig {
+    pager: KalturaPager;
+    filter: KalturaEndUserReportInputFilter;
+    sortOrder?: number;
+}
 
 export const ConfigContext = React.createContext<Config>({ks: '', locale: Locals.English});
 
 function Analytics() {
     
-    const [config, setConfig] = useState<Config>({ks: '', permissions: [], locale: Locals.English});
+    const [config, setConfig] = useState<Config>(() => {
+        return {ks: '', permissions: [], locale: Locals.English};
+    });
+    
     const history = useHistory();
-    const  location = useLocation();
+    const location = useLocation();
     
     useEffect(() => {
         const ks = sessionStorage.getItem('analyticsKS');
