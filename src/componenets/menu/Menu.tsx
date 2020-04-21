@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './Menu.scss';
 import { Button } from "antd";
+
+import classes from './Menu.module.scss';
 
 interface Props{
     onLogout: () => void;
@@ -9,10 +10,10 @@ interface Props{
 
 function Menu(props: Props) {
     return (
-        <div className="menu">
-            <NavLink to="engagement" activeClassName="active">ENGAGEMENT</NavLink>
-            <NavLink to="geo" activeClassName="active">GEO LOCATION</NavLink>
-            <Button className="logout" onClick={() => props.onLogout()}>Logout</Button>
+        <div className={classes.menu}>
+            <NavLink to="engagement" activeClassName={classes.active}>ENGAGEMENT</NavLink>
+            <NavLink to="geo" activeClassName={classes.active}>GEO LOCATION</NavLink>
+            <Button className={classes.logout} onClick={() => props.onLogout()}>Logout</Button>
         </div>
     );
 }

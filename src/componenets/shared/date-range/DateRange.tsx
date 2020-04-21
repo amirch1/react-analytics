@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { DatePicker } from 'antd';
-import './DateRange.scss';
+
 import moment from 'moment';
 
 const { RangePicker } = DatePicker;

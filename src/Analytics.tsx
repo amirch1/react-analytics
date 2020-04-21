@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {KalturaEndUserReportInputFilter, KalturaPager} from "kaltura-rxjs-client/api/types";
+import {
+    KalturaEndUserReportInputFilter,
+    KalturaPager,
+    KalturaReportResponseOptions
+} from "kaltura-rxjs-client/api/types";
 import {Route, useHistory, Redirect, Switch, useLocation} from 'react-router-dom';
 import Engagement from "./componenets/engagement/Engagement";
 import Geo from "./componenets/geo/Geo";
@@ -15,7 +19,7 @@ import esES from 'antd/es/locale/es_ES';
 import frFR from 'antd/es/locale/fr_FR';
 import itIT from 'antd/es/locale/it_IT';
 
-import './Analytics.scss';
+import classes from './Analytics.module.scss';
 
 export interface Config {
     ks: string;
@@ -25,6 +29,7 @@ export interface Config {
 export interface ReportConfig {
     pager: KalturaPager;
     filter: KalturaEndUserReportInputFilter;
+    responseOptions: KalturaReportResponseOptions;
     sortOrder?: number;
 }
 
@@ -81,7 +86,7 @@ function Analytics() {
     return (
         <ConfigProvider locale={getLocale()}>
             <ConfigContext.Provider value={config}>
-                <div className="App">
+                <div className={classes.app}>
                     {config.ks.length ? <Menu onLogout={logout}/> : null }
                     <Switch>
                         <Route exact path="/" component={() => config.ks.length ? <Engagement config={config}/> : <Redirect to="/login"/>}/>

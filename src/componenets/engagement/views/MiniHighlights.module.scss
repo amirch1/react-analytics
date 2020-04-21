@@ -1,0 +1,18 @@
+.miniHighlights {
+  padding: 24px;
+  background-color: white;
+  position: relative;
+  .row {
+    display: flex;
+    align-items: center;
+    .label {
+      line-height: 32px;
+      font-size: 14px;
+      margin-right: 8px;
+    }
+    .value {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+}
