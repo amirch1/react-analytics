@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Config, ConfigContext, ReportConfig} from "../../../Analytics";
 import {KalturaReportType} from "kaltura-rxjs-client/api/types/KalturaReportType";
-import {notification, Spin} from 'antd';
+import {notification} from 'antd';
 import {KalturaClient} from "kaltura-rxjs-client";
 import {analyticsConfig} from "../../../configuration/analytics-config";
 import {ReportGetTotalAction} from "kaltura-rxjs-client/api/types/ReportGetTotalAction";
@@ -76,6 +76,7 @@ export default function MiniHighlights(props: Props) {
         if (props.reportConfig.filter.fromDate !== -1 && props.reportConfig.filter.toDate !== -1) {
             loadReport();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.reportConfig]);
     
     

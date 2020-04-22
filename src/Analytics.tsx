@@ -45,21 +45,23 @@ function Analytics() {
     const location = useLocation();
     
     useEffect(() => {
-        const ks = sessionStorage.getItem('analyticsKS');
-        if (ks) {
-            setConfig({ks, permissions: [], locale: Locals.English});
+        const savedConfig = sessionStorage.getItem('react-analytics');
+        if (savedConfig) {
+            const {ks, locale} = JSON.parse(savedConfig);
+            setConfig({ks, permissions: [], locale: locale});
             history.push(location.pathname);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     const loginSuccess = (ks: string, locale: Locals, permissions = []) => {
-        sessionStorage.setItem('analyticsKS', ks);
+        sessionStorage.setItem('react-analytics', JSON.stringify({ks, locale}));
         setConfig({ks, permissions, locale});
         history.push("/engagement");
     };
     
     const logout = () => {
-        sessionStorage.removeItem('analyticsKS');
+        sessionStorage.removeItem('react-analytics');
         setConfig({ks: '', permissions: [], locale: Locals.English});
         history.push('/login');
     }
