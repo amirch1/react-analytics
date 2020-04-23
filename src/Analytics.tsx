@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-    KalturaEndUserReportInputFilter,
-    KalturaPager,
-    KalturaReportResponseOptions
-} from "kaltura-rxjs-client/api/types";
+import { KalturaEndUserReportInputFilter, KalturaPager, KalturaReportResponseOptions } from "kaltura-rxjs-client/api/types";
 import {Route, useHistory, Redirect, Switch, useLocation} from 'react-router-dom';
 import Engagement from "./componenets/engagement/Engagement";
 import Geo from "./componenets/geo/Geo";
@@ -26,6 +22,7 @@ export interface Config {
     permissions?: string[];
     locale: Locals;
 }
+
 export interface ReportConfig {
     pager: KalturaPager;
     filter: KalturaEndUserReportInputFilter;

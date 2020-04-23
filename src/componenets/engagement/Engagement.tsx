@@ -4,8 +4,8 @@ import {ConfigContext, Config, ReportConfig } from '../../Analytics';
 import { Redirect } from 'react-router-dom';
 import { DateFilterUtils } from '../shared/utils/date-filter-utils';
 
-import MiniHighlights from "./views/MiniHighlights";
-import TopVideos from "./views/TopVideos";
+import MiniHighlights from "./views/mini-highlights/MiniHighlights";
+import TopVideos from "./views/top-videos/TopVideos";
 
 import { KalturaPager } from "kaltura-rxjs-client/api/types/KalturaPager";
 import { KalturaReportInterval } from "kaltura-rxjs-client/api/types/KalturaReportInterval";
@@ -13,6 +13,7 @@ import { KalturaEndUserReportInputFilter } from "kaltura-rxjs-client/api/types/K
 import { KalturaReportResponseOptions } from "kaltura-rxjs-client/api/types/KalturaReportResponseOptions";
 
 import classes from './Engagement.module.scss';
+import {analyticsConfig} from "../../configuration/analytics-config";
 
 interface Props{
     config: Config;
@@ -33,7 +34,7 @@ function Engagement(props : Props) {
             fromDate: -1
         });
         const responseOptions: KalturaReportResponseOptions = new KalturaReportResponseOptions({
-            delimiter: '|',
+            delimiter: analyticsConfig.valueSeparator,
             skipEmptyDates: false
         });
         return {

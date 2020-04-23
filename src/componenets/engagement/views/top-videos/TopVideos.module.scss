@@ -1,0 +1,31 @@
+.topVideos {
+  padding: 24px;
+  margin-top: 24px;
+  background-color: white;
+  position: relative;
+  .title {
+    font-size: 20px;
+    color: #333333;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .play {
+    i {
+      color: #487adf;
+      margin-right: 8px;
+    }
+  }
+  .viewer {
+    i {
+      color: #31bea6;
+      margin-right: 8px;
+    }
+  }
+  .completion {
+    i {
+      color: #e1962e;
+      margin-right: 8px;
+    }
+  }
+}

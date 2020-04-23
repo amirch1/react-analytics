@@ -1,13 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Config, ConfigContext, ReportConfig} from "../../../Analytics";
+import {Config, ConfigContext, ReportConfig} from "../../../../Analytics";
 import {KalturaReportType} from "kaltura-rxjs-client/api/types/KalturaReportType";
 import {notification} from 'antd';
 import {KalturaClient} from "kaltura-rxjs-client";
-import {analyticsConfig} from "../../../configuration/analytics-config";
+import {analyticsConfig} from "../../../../configuration/analytics-config";
 import {ReportGetTotalAction} from "kaltura-rxjs-client/api/types/ReportGetTotalAction";
 
 import classes from './MiniHighlights.module.scss';
-import AreaBlocker from "../../shared/area-blocker/AreaBlocker";
+import AreaBlocker from "../../../shared/area-blocker/AreaBlocker";
+import {ReportUtils} from "../../../shared/utils/report-utils";
 
 interface Props {
     reportConfig: ReportConfig
@@ -55,13 +56,8 @@ export default function MiniHighlights(props: Props) {
                 })
             ).subscribe(
                 result => {
-                    const headers = result.header.split(props.reportConfig.responseOptions.delimiter);
-                    const data = result.data.split(props.reportConfig.responseOptions.delimiter);
-                    const parseData: any = {};
-                    headers.forEach((header, index) => {
-                        parseData[header] = (Math.round(parseFloat(data[index]) * 100) / 100).toString();
-                    });
-                    setHighlights(parseData as Highlights);
+                    const totalsData = ReportUtils.parseTotals(result) as unknown;
+                    setHighlights(totalsData as Highlights);
                     setLoading(false);
                 },
                 error => {
@@ -85,22 +81,32 @@ export default function MiniHighlights(props: Props) {
         
         <div className={classes.miniHighlights}>
             <AreaBlocker loading={loading}>
-                <h2>Highlights Report</h2>
-                <div className={classes.row}>
-                    <span className={classes.label}>Player Impressions:</span>
-                    <span className={classes.value}>{highlights["count_loads"]}</span>
-                </div>
-                <div className={classes.row}>
-                    <span className={classes.label}>Plays:</span>
-                    <span className={classes.value}>{highlights["count_plays"]}</span>
-                </div>
-                <div className={classes.row}>
-                    <span className={classes.label}>Unique Viewers:</span>
-                    <span className={classes.value}>{highlights["unique_known_users"]}</span>
-                </div>
-                <div className={classes.row}>
-                    <span className={classes.label}>Minutes Played:</span>
-                    <span className={classes.value}>{highlights["sum_time_viewed"]}</span>
+                <div className={classes.highlights}>
+                    <div className={classes.col}>
+                        <i className="icon-small-impressions" style={{'color': '#16a8d7'}}></i>
+                        <span className={classes.value}>{highlights["count_loads"]}</span>
+                        <span className={classes.label}>Player Impressions</span>
+                    </div>
+                    <div className={classes.col}>
+                        <i className="icon-small-play" style={{'color': '#487adf'}}></i>
+                        <span className={classes.value}>{highlights["count_plays"]}</span>
+                        <span className={classes.label}>Plays</span>
+                    </div>
+                    <div className={classes.col}>
+                        <i className="icon-viewer-contributor" style={{'color': '#31bea6'}}></i>
+                        <span className={classes.value}>{highlights["unique_known_users"]}</span>
+                        <span className={classes.label}>Unique Viewers</span>
+                    </div>
+                    <div className={classes.col}>
+                        <i className="icon-small-time" style={{'color': '#e1962e'}}></i>
+                        <span className={classes.value}>{highlights["sum_time_viewed"]}</span>
+                        <span className={classes.label}>Minutes Played</span>
+                    </div>
+                    <div className={classes.col}>
+                        <i className="icon-small-Completion-Rate" style={{'color': '#81cc6f'}}></i>
+                        <span className={classes.value}>{highlights["avg_completion_rate"]}%</span>
+                        <span className={classes.label}>Avg. Completion Rate</span>
+                    </div>
                 </div>
             </AreaBlocker>
         </div>

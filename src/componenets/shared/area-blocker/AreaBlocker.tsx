@@ -13,7 +13,7 @@ export default function (props: Props) {
             {props.children}
             {props.loading ?
                 <div className={classes.areaBlocker}>
-                    <Spin size="large"/>
+                    <Spin/>
                 </div>
                 : null}
         </>

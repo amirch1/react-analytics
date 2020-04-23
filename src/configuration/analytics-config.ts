@@ -1,3 +1,4 @@
 export const analyticsConfig = {
-    baseUrl: 'http://www.kaltura.com'
+    baseUrl: 'http://www.kaltura.com',
+    valueSeparator: '|'
 }
