@@ -6,14 +6,17 @@ import { DateFilterUtils } from '../shared/utils/date-filter-utils';
 
 import MiniHighlights from "./views/mini-highlights/MiniHighlights";
 import TopVideos from "./views/top-videos/TopVideos";
+import Performances from "./views/performances/Performances";
 
 import { KalturaPager } from "kaltura-rxjs-client/api/types/KalturaPager";
 import { KalturaReportInterval } from "kaltura-rxjs-client/api/types/KalturaReportInterval";
 import { KalturaEndUserReportInputFilter } from "kaltura-rxjs-client/api/types/KalturaEndUserReportInputFilter";
 import { KalturaReportResponseOptions } from "kaltura-rxjs-client/api/types/KalturaReportResponseOptions";
 
-import classes from './Engagement.module.scss';
 import {analyticsConfig} from "../../configuration/analytics-config";
+
+import classes from './Engagement.module.scss';
+
 
 interface Props{
     config: Config;
@@ -68,6 +71,7 @@ function Engagement(props : Props) {
                         </div>
                     </div>
                     <MiniHighlights reportConfig={reportConfig}></MiniHighlights>
+                    <Performances reportConfig={reportConfig}></Performances>
                     <TopVideos reportConfig={reportConfig}></TopVideos>
                 </div>
 

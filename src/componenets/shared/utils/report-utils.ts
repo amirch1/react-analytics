@@ -1,5 +1,6 @@
-import {KalturaReportTable, KalturaReportTotal} from "kaltura-rxjs-client/api/types";
+import {KalturaReportGraph, KalturaReportTable, KalturaReportTotal} from "kaltura-rxjs-client/api/types";
 import {analyticsConfig} from "../../../configuration/analytics-config";
+import {DateFilterUtils} from "./date-filter-utils";
 
 export class ReportUtils {
     static parseTableData(table: KalturaReportTable, config: string[]): { [key: string]: string }[]  {
@@ -34,4 +35,33 @@ export class ReportUtils {
         return parseData;
     }
     
+    static parseGraphs(graphs: KalturaReportGraph[], metrics: string[]): any[] {
+        let lineChartData: {[key: string]: any}[] = [];
+        graphs.forEach((graph: KalturaReportGraph, graphIndex) => {
+            if (metrics.indexOf(graph.id) === -1) {
+                return;
+            }
+            const data = graph.data.split(';');
+        
+            data.forEach((value, index) => {
+                if (value.length) {
+                    const label = value.split(analyticsConfig.valueSeparator)[0];
+                    let name = DateFilterUtils.formatFullDateString(label);
+                    let val: number = parseFloat(value.split(analyticsConfig.valueSeparator)[1]);
+                    if (isNaN(val)) {
+                        val = 0;
+                    }
+                    if (graphIndex === 0){
+                        lineChartData.push({'date': name, [graph.id]: val});
+                    } else {
+                        let entry = lineChartData.find(obj => obj.date === name);
+                        if (entry){
+                            entry[graph.id] = val;
+                        }
+                    }
+                }
+            });
+        });
+        return lineChartData;
+    }
 }

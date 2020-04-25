@@ -23,3 +23,14 @@ code {
 .ant-card-head {
   border-bottom: none !important;
 }
+.ant-tabs-nav {
+  width: 100% !important;
+}
+.ant-tabs-nav > div:first-of-type {
+  display: flex !important;
+  width: 100% !important;
+}
+.ant-tabs-tab {
+  flex: 1 1 auto !important;
+  text-align: center !important;
+}

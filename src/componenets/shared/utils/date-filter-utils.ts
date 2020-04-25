@@ -18,6 +18,15 @@ export class DateFilterUtils {
     }
     return value ? Math.floor(dateClone.getTime() / 1000) : undefined; // divide by 1000 to convert to seconds as required by Kaltura API
   }
+  
+  static formatFullDateString(value: string): string {
+    let result = '';
+    const year: string = value.substring(0, 4);
+    const month: string = value.substring(4, 6);
+    const day: string = value.substring(6, 8);
+    result = day + '/' + month + '/' + year;
+    return result;
+  }
 
   static fromServerDate(value: number): Date | null{
     return (value ? new Date(value * 1000) : null);

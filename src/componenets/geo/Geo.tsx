@@ -2,7 +2,7 @@ import React from 'react';
 
 function Geo() {
     return (
-        <h2>Geo</h2>
+        <span style={{'padding': '24px', 'fontWeight': 'bold', 'color': '#333333', 'fontSize': '24px', 'display': 'block'}}>Geo Location</span>
     );
 }
 

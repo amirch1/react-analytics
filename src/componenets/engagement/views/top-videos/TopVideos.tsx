@@ -81,7 +81,7 @@ export default function TopVideos(props: Props) {
                     reportType,
                     pager: pager as KalturaFilterPager,
                     reportInputFilter: filter,
-                    responseOptions: responseOptions
+                    responseOptions
                 })
             ).subscribe(
                 result => {
@@ -121,6 +121,7 @@ export default function TopVideos(props: Props) {
     return (
         <div className={classes.topVideos}>
             <span className={classes.title}>Top Videos</span>
+            <span className={classes.totalVideos}>{dataSource.length} Videos</span>
             <Table loading={loading} dataSource={dataSource} columns={columns} />
         </div>
     )
