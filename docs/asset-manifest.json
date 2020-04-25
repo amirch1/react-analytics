@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c3794b69.chunk.css",
+    "main.js": "/static/js/main.0ad09f5a.chunk.js",
+    "main.js.map": "/static/js/main.0ad09f5a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b4967029.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b4967029.js.map",
+    "static/css/2.2760fd98.chunk.css": "/static/css/2.2760fd98.chunk.css",
+    "static/js/2.10917adc.chunk.js": "/static/js/2.10917adc.chunk.js",
+    "static/js/2.10917adc.chunk.js.map": "/static/js/2.10917adc.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c38328ea8bd4b702ddbe8ff28f2bc95c.js": "/precache-manifest.c38328ea8bd4b702ddbe8ff28f2bc95c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.2760fd98.chunk.css.map": "/static/css/2.2760fd98.chunk.css.map",
+    "static/css/main.c3794b69.chunk.css.map": "/static/css/main.c3794b69.chunk.css.map",
+    "static/js/2.10917adc.chunk.js.LICENSE.txt": "/static/js/2.10917adc.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/static/media/icomoon.f3df9c8f.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b4967029.js",
+    "static/css/2.2760fd98.chunk.css",
+    "static/js/2.10917adc.chunk.js",
+    "static/css/main.c3794b69.chunk.css",
+    "static/js/main.0ad09f5a.chunk.js"
+  ]
+}
