@@ -45,18 +45,21 @@ export class ReportUtils {
         
             data.forEach((value, index) => {
                 if (value.length) {
-                    const label = value.split(analyticsConfig.valueSeparator)[0];
-                    let name = DateFilterUtils.formatFullDateString(label);
-                    let val: number = parseFloat(value.split(analyticsConfig.valueSeparator)[1]);
-                    if (isNaN(val)) {
-                        val = 0;
-                    }
-                    if (graphIndex === 0){
-                        lineChartData.push({'date': name, [graph.id]: val});
-                    } else {
-                        let entry = lineChartData.find(obj => obj.date === name);
-                        if (entry){
-                            entry[graph.id] = val;
+                    const pair = value.split(analyticsConfig.valueSeparator);
+                    if (pair.length > 1) {
+                        const label = pair[0];
+                        let name = DateFilterUtils.formatFullDateString(label);
+                        let val: number = parseFloat(pair[1]);
+                        if (isNaN(val)) {
+                            val = 0;
+                        }
+                        if (graphIndex === 0) {
+                            lineChartData.push({'date': name, [graph.id]: val});
+                        } else {
+                            let entry = lineChartData.find(obj => obj.date === name);
+                            if (entry) {
+                                entry[graph.id] = val;
+                            }
                         }
                     }
                 }

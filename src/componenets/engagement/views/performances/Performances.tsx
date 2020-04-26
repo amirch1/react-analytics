@@ -73,7 +73,7 @@ export default function Performances(props: Props) {
         if (active) {
             return (
                 <div className={classes.tooltip}>
-                    <span className={classes.label}>{`${label} : ${payload[0].value}`}</span>
+                    <span className={classes.label}>{`${label} : ${payload ? payload[0].value : ''}`}</span>
                 </div>
             );
         }
