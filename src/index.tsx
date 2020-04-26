@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import Analytics from "./Analytics";
-import { BrowserRouter as Router} from "react-router-dom";
+import { HashRouter as Router} from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
+  <Router basename='/'>
     <Analytics />
   </Router>,
   document.getElementById('root')
