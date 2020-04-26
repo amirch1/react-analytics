@@ -23,7 +23,9 @@ function DateRange(props: Props) {
     }, []);
     
     const dateRangeChange = (dates: moment.Moment[]) => {
-        props.onDatesChange(dates[0].toDate(), dates[1].toDate());
+        if (dates && dates.length) {
+            props.onDatesChange(dates[0].toDate(), dates[1].toDate());
+        }
     }
     
     return (
