@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Demo
 
-Play with the application [here](https://amirch1.github.io/react-analytics)
+Play with the application [here](https://amirch1.github.io/react-analytics/#/login)
 
 ## Libraries
 
