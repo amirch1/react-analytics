@@ -1,7 +1,17 @@
 # react-analytics
-Kaltura Analytics implementation using React
+Kaltura Analytics implementation using React Hooks & Context.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Demo
+
+Play with the application [here](https://amirch1.github.io/react-analytics)
+
+## Libraries
+
+The application uses the following libraries:
+* **UI Components** : [Ant Design](https://ant.design/)
+* **Charting** : [Recharts](https://recharts.org/)
 
 ## Available Scripts
 
